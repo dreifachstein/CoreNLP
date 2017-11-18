@@ -1,8 +1,8 @@
 package edu.stanford.nlp.parser.lexparser; 
 import edu.stanford.nlp.util.logging.Redwood;
 
-import edu.stanford.nlp.ling.CategoryWordTag;
 import edu.stanford.nlp.ling.HasTag;
+import edu.stanford.nlp.ling.IndexCategoryWordTag;
 import edu.stanford.nlp.ling.Label;
 import edu.stanford.nlp.process.TokenizerFactory;
 import edu.stanford.nlp.parser.metrics.AbstractEval;
@@ -82,7 +82,7 @@ public abstract class AbstractTreebankParserParams implements TreebankLangParser
       // if (children.isEmpty()) {
       //   return null;
       // }
-      CategoryWordTag newLabel = new CategoryWordTag(lab);
+      IndexCategoryWordTag newLabel = new IndexCategoryWordTag(lab);
       newLabel.setCategory(s);
       if (lab instanceof HasTag) {
         String tag = ((HasTag) lab).tag();
@@ -125,7 +125,7 @@ public abstract class AbstractTreebankParserParams implements TreebankLangParser
         Tree newChild = transformTree(child);
         children.add(newChild);
       }
-      CategoryWordTag newLabel = new CategoryWordTag(lab);
+      IndexCategoryWordTag newLabel = new IndexCategoryWordTag(lab);
       newLabel.setCategory(s);
       if (lab instanceof HasTag) {
         String tag = ((HasTag) lab).tag();

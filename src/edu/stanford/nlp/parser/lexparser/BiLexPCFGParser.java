@@ -3,10 +3,10 @@ import edu.stanford.nlp.util.logging.Redwood;
 
 import java.util.*;
 
-import edu.stanford.nlp.ling.CategoryWordTag;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.ling.HasContext;
 import edu.stanford.nlp.ling.HasWord;
+import edu.stanford.nlp.ling.IndexCategoryWordTag;
 import edu.stanford.nlp.ling.Label;
 import edu.stanford.nlp.math.SloppyMath;
 import edu.stanford.nlp.parser.KBestViterbiParser;
@@ -86,10 +86,11 @@ public class BiLexPCFGParser implements KBestViterbiParser  {
 
 
   protected Tree extractParse(Edge edge) {
-    String head = wordIndex.get(words[edge.head]);
+    int index = edge.head;
+    String head = wordIndex.get(words[index]);
     String tag = tagIndex.get(edge.tag);
     String state = stateIndex.get(edge.state);
-    Label label = new CategoryWordTag(state, head, tag);
+    Label label = new IndexCategoryWordTag(index, state, head, tag);
     if (edge.backEdge == null && edge.backHook == null) {
       // leaf, but needs word terminal
       Tree leaf;
